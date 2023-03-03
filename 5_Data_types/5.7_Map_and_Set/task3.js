@@ -14,3 +14,5 @@ let keys = map.keys();
 // Ошибка: keys.push -- это не функция
 keys = [...keys];
 keys.push("more");
+
+console.log(keys);

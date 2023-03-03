@@ -13,5 +13,17 @@ cheaters - hectares - teachers
 */
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-alert( aclean(arr) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+function aclean(arr) {
+    const res = [];
+    const map = new Map();
+
+    arr.forEach(elem => {
+        const sortElem = elem.split('').sort().join('').toLowerCase();
+        map.set(sortElem, elem);
+    });
+
+    return [...map.values()]
+}   
+
+console.log( aclean(arr) ); // "nap,teachers,ear" или "PAN,cheaters,era"
 //Из каждой группы анаграмм должно остаться только одно слово, не важно какое.
