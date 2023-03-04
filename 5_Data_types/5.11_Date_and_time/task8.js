@@ -18,3 +18,28 @@ console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. н�
 
 // вчерашняя дата вроде 31.12.2016, 20:00
 console.log( formatDate(new Date(new Date - 86400 * 1000)) );
+
+function formatDate( date ) {
+    let timeDifference = Date.now() - date.getTime();
+    let out = '';
+
+    if(timeDifference < 1000) {
+        out = "прямо сейчас";
+    } else if ( timeDifference < 1000 * 60 ) {
+        out = `${date.getSeconds()} сек. назад.`;
+    } else if ( timeDifference < 1000 * 60 *60 ) {
+        out = `${date.getMinutes()} мин. назад.`;
+    } else {
+        let day = formattingDateOutput(date.getDate());
+        let month = formattingDateOutput(date.getMonth() + 1);
+        let year = date.getFullYear();
+        let hours = formattingDateOutput(date.getDate());
+        let minutes = formattingDateOutput(date.getMinutes());
+        out = `${day}.${month}.${year} ${hours}:${minutes}`;
+    }
+    return out;
+}
+
+function formattingDateOutput (num) {
+    return num < 10 ? '0' + num : num;
+}
